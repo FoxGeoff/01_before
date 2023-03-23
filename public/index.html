@@ -3,7 +3,9 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self';"/>
     <title>Upload | We Love Kittens!</title>
+    <link rel="shortcut icon" href="../favicon.ico">
   </head>
   <body>
     <form method="post" action="/api/single-file" enctype="multipart/form-data">
