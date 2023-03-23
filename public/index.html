@@ -3,14 +3,32 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self';"/>
+    <!-- Content Security Policy: The page’s settings blocked the loading of a resource at inline (“style-src”).-->
     <title>Upload | We Love Kittens!</title>
-    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="shortcut icon" href="../favicon.ico" />
   </head>
   <body>
     <form method="post" action="/api/single-file" enctype="multipart/form-data">
-      <input type="file" name="myfile" id="myfile"><br />
+      <input
+        type="file"
+        name="myfile"
+        id="myfile"
+        style="display: none"
+      /><br />
+      <!-- Added-->
+      <button type="button" id="uploadButton">Choose a file to upload</button>
+      <div>Selected filename:<span id="filename"></span></div>
       <button type="submit">Submit</button>
     </form>
+    <script>
+      const fileTag = document.getElementById('myfile');
+      const filenameElem = document.getElementById('filename');
+      document.getElementById('uploadButton').addEventListener('click', () => {
+        fileTag.click();
+      });
+      fileTag.addEventListener('change', () => {
+        filenameElem.innerHTML = fileTag.files[0].name;
+      });
+    </script>
   </body>
 </html>

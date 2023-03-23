@@ -52,3 +52,36 @@ app.post('/api/single-file', (req, res) => {
 });
 ...
 ```
+
+### Task: Styling File Input Elements
+
+1. Ref <https://app.pluralsight.com/course-player?clipId=2988c1e3-0039-42dc-97f3-5a170666a858>
+
+![html form](/images/html-form-customised.jpg "html form")
+
+```html
+<body>
+    <form method="post" action="/api/single-file" enctype="multipart/form-data">
+      <input
+        type="file"
+        name="myfile"
+        id="myfile"
+        style="display: none"
+      /><br />
+      <!-- Added-->
+      <button type="button" id="uploadButton">Choose a file to upload</button>
+      <div>Selected filename:<span id="filename"></span></div>
+      <button type="submit">Submit</button>
+    </form>
+    <script>
+      const fileTag = document.getElementById('myfile');
+      const filenameElem = document.getElementById('filename');
+      document.getElementById('uploadButton').addEventListener('click', () => {
+        fileTag.click();
+      });
+      fileTag.addEventListener('change', () => {
+        filenameElem.innerHTML = fileTag.files[0].name;
+      });
+    </script>
+  </body>
+```
